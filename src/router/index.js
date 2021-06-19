@@ -1,7 +1,4 @@
-import {
-  createRouter,
-  createWebHashHistory
-} from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 // import Vuex from '@/views/vuex.vue'
 
 const routes = [
@@ -9,7 +6,7 @@ const routes = [
     path: '/',
     name: 'Login',
     component: () => import('@/views/login/index.vue') // 懒加载组件
-  },
+  }
   // {
   //   path: '/vuex',
   //   name: 'Vuex',
