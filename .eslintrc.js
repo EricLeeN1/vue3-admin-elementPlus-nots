@@ -15,5 +15,14 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['vue'],
-  rules: {}
+  rules: {
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['@']
+      }
+    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+  }
 }
