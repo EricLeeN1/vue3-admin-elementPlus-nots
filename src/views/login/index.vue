@@ -5,13 +5,13 @@
 <script>
 import { defineComponent, onMounted } from "vue";
 import { getLists } from "@/apis/github";
-export default {
+export default defineComponent({
   setup() {
     // let getLists = () => {
 
     // };
     onMounted(() => {
-      console.log(getLists)
+      console.log(getLists);
       try {
         getLists
           .then((res) => {
@@ -28,7 +28,7 @@ export default {
       getLists,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>
