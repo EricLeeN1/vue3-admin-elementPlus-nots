@@ -69,19 +69,20 @@
           <span>Password : any</span>
         </div>
 
-        <!-- <el-button class="thirdparty-button" type="primary" @click="toggleDialog(true)">
-          Or connect with
-        </el-button> -->
+        <el-button class="thirdparty-button" type="primary" @click="toggleDialog(true)">
+          第三方登录
+        </el-button>
       </div>
     </el-form>
 
-    <!-- <el-dialog title="Or connect with" :visible="showDialog">
-      Can not be simulated on local, so please combine you own business simulation! ! !
+    <el-dialog title="第三方登录" v-model="showDialog">
+      Can not be simulated on local, so please combine you own business simulation! !
+      !(不能在本地模拟，所以请结合您自己的业务模拟！!!!)
       <br />
       <br />
       <br />
       <social-sign />
-    </el-dialog> -->
+    </el-dialog>
   </div>
 </template>
 
@@ -91,11 +92,11 @@ import { nextTick, watch, ref, onMounted, toRefs, reactive } from 'vue'
 import { getLists } from '@/apis/github'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-// import SocialSign from './components/SocialSignin.vue'
+import SocialSign from './components/SocialSignin.vue'
 
 export default {
   components: {
-    // SocialSign
+    SocialSign
   },
   setup() {
     const router = useRouter()
@@ -169,7 +170,6 @@ export default {
     const handleLogin = () => {
       loginFormRef.value.validate((valid) => {
         if (valid) {
-          console.log(valid)
           state.loading = true
           store
             .dispatch('user/login', state.form)
