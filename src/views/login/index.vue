@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">Vite + Vue3 + Axios + Vue-router + Vuex</h3>
       </div>
 
       <el-form-item prop="username">
@@ -89,6 +89,7 @@
 import { validUsername } from '@/utils/validate'
 import { nextTick, watch, ref, onMounted, toRefs, reactive } from 'vue'
 import { getLists } from '@/apis/github'
+import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 // import SocialSign from './components/SocialSignin.vue'
 
@@ -99,6 +100,7 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
+    const store = useStore()
     const loginFormRef = ref(null)
     const userNameRef = ref(null)
     const passwordRef = ref(null)
@@ -167,17 +169,18 @@ export default {
     const handleLogin = () => {
       loginFormRef.value.validate((valid) => {
         if (valid) {
+          console.log(valid)
           state.loading = true
-          this.$store
+          store
             .dispatch('user/login', state.form)
             .then(() => {
               router.push({ path: state.redirect || '/', query: state.otherQuery })
               state.loading = false
             })
-            .catch(() => {
+            .catch((err) => {
+              console.log(err)
               state.loading = false
             })
-          return false
         }
         console.log('error submit!!')
         return false
@@ -210,7 +213,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
@@ -228,7 +231,7 @@ $cursor: #fff;
 .login-container {
   .el-input {
     display: inline-block;
-    height: 40px;
+    height: 47px;
     width: 85%;
 
     input {
@@ -238,7 +241,7 @@ $cursor: #fff;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
       color: $light_gray;
-      height: 40px;
+      height: 47px;
       caret-color: $cursor;
 
       &:-webkit-autofill {
@@ -263,7 +266,7 @@ $dark_gray: #889aa4;
 $light_gray: #eee;
 
 .login-container {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
@@ -275,7 +278,6 @@ $light_gray: #eee;
     padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
-    box-sizing: border-box;
   }
 
   .tips {
