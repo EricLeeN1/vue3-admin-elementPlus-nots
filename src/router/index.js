@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import Vuex from '@/views/vuex.vue'
+import Login from '@/views/login/index.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Login',
-    component: () => import('@/views/login/index.vue') // 懒加载组件
+    component: Login
   }
   // {
   //   path: '/vuex',
