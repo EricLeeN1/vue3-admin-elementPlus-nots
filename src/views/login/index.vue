@@ -2,8 +2,8 @@
   <div class="login-container">
     <el-form
       ref="loginFormRef"
-      :model="loginForm"
-      :rules="loginRules"
+      :model="form"
+      :rules="rules"
       class="login-form"
       autocomplete="on"
       label-position="left"
@@ -18,8 +18,8 @@
         </span>
         <el-input
           ref="userNameRef"
-          v-model="loginForm.username"
-          placeholder="Username"
+          v-model="form.username"
+          placeholder="请输入用户名称"
           name="username"
           type="text"
           tabindex="1"
@@ -35,9 +35,9 @@
           <el-input
             :key="passwordType"
             ref="passwordRef"
-            v-model="loginForm.password"
+            v-model="form.password"
             :type="passwordType"
-            placeholder="Password"
+            placeholder="请输入密码"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -56,7 +56,7 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleLogin"
-        >Login</el-button
+        >登录</el-button
       >
 
       <div style="position: relative">
@@ -69,9 +69,9 @@
           <span>Password : any</span>
         </div>
 
-        <el-button class="thirdparty-button" type="primary" @click="toggleDialog(true)">
+        <!-- <el-button class="thirdparty-button" type="primary" @click="toggleDialog(true)">
           Or connect with
-        </el-button>
+        </el-button> -->
       </div>
     </el-form>
 
@@ -87,7 +87,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { nextTick, watch, ref, onMounted, toRefs, reactive } from 'vue'
+import { nextTick, watch, ref, onMounted, toRefs, reactive, unref } from 'vue'
 import { getLists } from '@/apis/github'
 import { useRoute, useRouter } from 'vue-router'
 // import SocialSign from './components/SocialSignin.vue'
@@ -117,11 +117,11 @@ export default {
       }
     }
     const state = reactive({
-      loginForm: {
+      form: {
         username: 'admin',
         password: '1231231'
       },
-      loginRules: {
+      rules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
@@ -158,20 +158,20 @@ export default {
       state.showDialog = bol
     }
     onMounted(() => {
-      console.log(loginFormRef.value)
-      if (state.loginForm.username === '') {
+      console.log(unref(userNameRef))
+      console.log(passwordRef.value)
+      if (state.form.username === '') {
         userNameRef.value.focus()
-      } else if (state.loginForm.password === '') {
+      } else if (state.form.password === '') {
         passwordRef.value.focus()
       }
     })
     const handleLogin = () => {
-      console.log(loginFormRef)
       loginFormRef.value.validate((valid) => {
         if (valid) {
           state.loading = true
           this.$store
-            .dispatch('user/login', state.loginForm)
+            .dispatch('user/login', state.form)
             .then(() => {
               router.push({ path: state.redirect || '/', query: state.otherQuery })
               state.loading = false
@@ -198,6 +198,9 @@ export default {
     )
     return {
       ...toRefs(state),
+      loginFormRef,
+      userNameRef,
+      passwordRef,
       getLists,
       checkCapslock,
       showPwd,
