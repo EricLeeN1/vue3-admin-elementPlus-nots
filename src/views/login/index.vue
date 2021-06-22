@@ -87,7 +87,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { nextTick, watch, ref, onMounted, toRefs, reactive, unref } from 'vue'
+import { nextTick, watch, ref, onMounted, toRefs, reactive } from 'vue'
 import { getLists } from '@/apis/github'
 import { useRoute, useRouter } from 'vue-router'
 // import SocialSign from './components/SocialSignin.vue'
@@ -158,8 +158,6 @@ export default {
       state.showDialog = bol
     }
     onMounted(() => {
-      console.log(unref(userNameRef))
-      console.log(passwordRef.value)
       if (state.form.username === '') {
         userNameRef.value.focus()
       } else if (state.form.password === '') {
