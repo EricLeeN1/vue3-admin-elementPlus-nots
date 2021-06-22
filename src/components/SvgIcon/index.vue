@@ -1,20 +1,20 @@
 <template>
   <div
     v-if="isExternals"
+    v-bind="$attrs"
     :style="styleExternalIcon"
     class="svg-external-icon svg-icon"
-    v-on="$listeners"
   />
-  <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">
+  <svg v-else :class="svgClass" aria-hidden="true" v-bind="$attrs">
     <use :xlink:href="iconName" />
   </svg>
 </template>
 
 <script>
 import { isExternal } from '@/utils/validate'
-import { computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SvgIcon',
   props: {
     iconClass: {
@@ -52,7 +52,7 @@ export default {
       styleExternalIcon
     }
   }
-}
+})
 </script>
 
 <style scoped>
