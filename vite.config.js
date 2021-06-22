@@ -8,7 +8,12 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
+      '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录，
+      '@assets': resolve(__dirname, 'src/assets'),
+      '@components': resolve(__dirname, 'src/components'),
+      '@images': resolve(__dirname, 'src/assets/images'),
+      '@views': resolve(__dirname, 'src/views'),
+      '@store': resolve(__dirname, 'src/store')
     }
   },
   base: './', // 设置打包路径
