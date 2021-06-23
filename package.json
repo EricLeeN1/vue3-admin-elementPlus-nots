@@ -8,12 +8,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^1.2.3",
     "axios": "^0.21.1",
+    "echarts": "^5.1.2",
     "element-plus": "^1.0.2-beta.48",
     "normalize.css": "^8.0.1",
     "vite": "^2.3.7",
-    "@vitejs/plugin-vue": "^1.2.3",
     "vue": "^3.0.5",
+    "vue-count-to": "^1.0.13",
     "vue-router": "^4.0.9",
     "vuex": "^4.0.2"
   },
