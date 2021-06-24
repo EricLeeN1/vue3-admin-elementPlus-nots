@@ -69,7 +69,7 @@ import LineChart from './components/LineChart.vue'
 import RaddarChart from './components/RaddarChart.vue'
 import PieChart from './components/PieChart.vue'
 import BarChart from './components/BarChart.vue'
-// import TransactionTable from './components/TransactionTable.vue'
+import TransactionTable from './components/TransactionTable.vue'
 // import TodoList from './components/TodoList.vue'
 // import BoxCard from './components/BoxCard.vue'
 
@@ -99,8 +99,8 @@ export default {
     LineChart,
     RaddarChart,
     PieChart,
-    BarChart
-    // TransactionTable,
+    BarChart,
+    TransactionTable
     // TodoList,
     // BoxCard
   },
