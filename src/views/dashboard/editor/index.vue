@@ -1,10 +1,10 @@
 <template>
   <div class="dashboard-editor-container">
     <div class="clearfix">
-      <!-- <pan-thumb :image="avatar" style="float: left">
+      <pan-thumb :image="avatar" style="float: left">
         Your roles:
         <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
-      </pan-thumb> -->
+      </pan-thumb>
       <github-corner style="position: absolute; top: 0px; border: 0; right: 0" />
       <div class="info-container">
         <span class="display_name">{{ name }}</span>
@@ -20,15 +20,15 @@
 </template>
 
 <script>
-// import PanThumb from '@/components/PanThumb/index.vue'
+import PanThumb from '@/components/PanThumb/index.vue'
 import GithubCorner from '@/components/GithubCorner/index.vue'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 
 export default {
   name: 'DashboardEditor',
-  // components: { PanThumb, GithubCorner }, // TODO: PanThub组件的引入
-  components: { GithubCorner },
+  components: { PanThumb, GithubCorner },
+  // components: { GithubCorner },
   setup() {
     const store = useStore()
     const name = computed(() => {
