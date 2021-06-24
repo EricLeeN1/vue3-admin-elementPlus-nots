@@ -7,8 +7,9 @@ import * as echarts from 'echarts'
 import { ref, nextTick, onMounted, watch, onUnmounted } from 'vue'
 // import resize from './mixins/resize'
 
-// import.meta.glob('echarts/theme/macarons')
+// import macarons2 from 'echarts/theme/macarons2.js'
 // require('echarts/theme/macarons')
+// TODO add 主题引用
 let chart = null
 export default {
   // mixins: [resize],
