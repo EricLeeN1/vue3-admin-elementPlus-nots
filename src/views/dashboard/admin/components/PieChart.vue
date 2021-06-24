@@ -5,7 +5,11 @@
 <script>
 import * as echarts from 'echarts'
 import { ref, nextTick, onMounted, onUnmounted } from 'vue'
-
+// import resize from './mixins/resize'
+// TODO: resize添加
+// import macarons2 from 'echarts/theme/macarons2.js'
+// require('echarts/theme/macarons')
+// TODO add 主题引用
 let chart = null
 export default {
   // mixins: [resize],
@@ -76,7 +80,8 @@ export default {
       chart = null
     })
     return {
-      pieChart
+      pieChart,
+      initChart
     }
   }
 }

@@ -118,7 +118,8 @@ export default {
       chart = null
     })
     return {
-      raddarChartsRef
+      raddarChartsRef,
+      initChart
     }
   }
 }

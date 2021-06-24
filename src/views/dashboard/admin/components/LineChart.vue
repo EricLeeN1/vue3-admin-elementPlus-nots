@@ -132,7 +132,8 @@ export default {
       }
     )
     return {
-      lineChartsRef
+      lineChartsRef,
+      initChart
     }
   }
 }
