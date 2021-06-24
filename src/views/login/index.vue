@@ -89,7 +89,6 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import { nextTick, watch, ref, onMounted, toRefs, reactive } from 'vue'
-import { getLists } from '@/apis/github'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import SocialSign from './components/SocialSignin.vue'
@@ -202,7 +201,6 @@ export default {
       loginFormRef,
       userNameRef,
       passwordRef,
-      getLists,
       checkCapslock,
       showPwd,
       toggleDialog,
