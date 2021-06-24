@@ -66,8 +66,8 @@ import { toRefs, reactive, onMounted } from 'vue'
 import GithubCorner from '@/components/GithubCorner/index.vue'
 import PanelGroup from './components/PanelGroup.vue'
 import LineChart from './components/LineChart.vue'
-// import RaddarChart from './components/RaddarChart.vue'
-// import PieChart from './components/PieChart.vue'
+import RaddarChart from './components/RaddarChart.vue'
+import PieChart from './components/PieChart.vue'
 // import BarChart from './components/BarChart.vue'
 // import TransactionTable from './components/TransactionTable.vue'
 // import TodoList from './components/TodoList.vue'
@@ -96,9 +96,9 @@ export default {
   components: {
     GithubCorner,
     PanelGroup,
-    LineChart
-    // RaddarChart,
-    // PieChart,
+    LineChart,
+    RaddarChart,
+    PieChart
     // BarChart,
     // TransactionTable,
     // TodoList,
