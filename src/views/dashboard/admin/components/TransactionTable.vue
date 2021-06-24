@@ -2,7 +2,7 @@
   <el-table :data="lists" style="width: 100%; padding-top: 15px">
     <el-table-column label="Id" min-width="60" prop="id"> </el-table-column>
     <el-table-column label="Name" min-width="60" prop="name"> </el-table-column>
-    <el-table-column label="Language" min-width="30" prop="language"> </el-table-column>
+    <el-table-column label="Language" min-width="50" prop="language"> </el-table-column>
     <el-table-column label="Time" width="195" align="center" prop="pushed_at"> </el-table-column>
     <el-table-column label="Status" width="100" align="center">
       <template #default="scope">
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { transactionList } from '@/apis/remote-search'
+import { transactionList } from '@/apis/github'
 import { onMounted, reactive, toRefs } from 'vue'
 
 export default {
