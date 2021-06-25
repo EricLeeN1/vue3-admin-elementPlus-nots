@@ -167,9 +167,11 @@ export default {
       }
     })
     const handleLogin = () => {
+      // eslint-disable-next-line consistent-return
       loginFormRef.value.validate((valid) => {
         if (valid) {
           state.loading = true
+          console.log(store.user)
           store
             .dispatch('user/login', state.form)
             .then(() => {
@@ -180,9 +182,10 @@ export default {
               console.log(err)
               state.loading = false
             })
+        } else {
+          console.log('error submit!!')
+          return false
         }
-        console.log('error submit!!')
-        return false
       })
     }
     watch(

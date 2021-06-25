@@ -10,6 +10,5 @@ export default createStore({
     user
   },
   getters,
-  // strict: fa,
   plugins: production ? [createLogger()] : []
 })
