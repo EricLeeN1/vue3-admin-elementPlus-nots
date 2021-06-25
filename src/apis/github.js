@@ -15,3 +15,11 @@ export function transactionList(params = { page: 1, per_page: 5 }) {
     params
   })
 }
+
+export function logout(params = { page: 1, per_page: 5 }) {
+  return request({
+    url: '/users/EricLeeN1/repos',
+    method: 'get',
+    params
+  })
+}

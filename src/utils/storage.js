@@ -1,26 +1,21 @@
-import { validatenull } from '@/util/validate'
-import { aesEncryptStore, aesDecryptStore } from '@/util/rsa'
+import { validateNull } from '@/utils/validate'
 import website from '@/config/website'
 
-const keyName = website.key + '-'
+const keyName = `${website.key}-`
 /**
  * 存储localStorage
  */
 export const setStore = (params = {}) => {
-  let { name, content, type, withoutEncrypt } = params
+  const { content, type } = params
+  let { name } = params
   name = keyName + name
-  let obj = {
+  const obj = {
     dataType: typeof content,
-    content: content,
-    type: type,
+    content,
+    type,
     datetime: new Date().getTime()
   }
-  let finall
-  if (withoutEncrypt) {
-    finall = JSON.stringify(obj)
-  } else {
-    finall = aesEncryptStore(JSON.stringify(obj))
-  }
+  const finall = JSON.stringify(obj)
   if (type) window.sessionStorage.setItem(name, finall)
   else window.localStorage.setItem(name, finall)
 }
@@ -29,48 +24,40 @@ export const setStore = (params = {}) => {
  */
 
 export const getStore = (params = {}) => {
-  let { name, debug, withoutEncrypt } = params
+  let { name } = params
   name = keyName + name
   let obj = {}
   let content = ''
-  obj = window.sessionStorage.getItem(name) || window.localStorage.getItem(name) || ''
-
-  if (!withoutEncrypt && obj) {
-    obj = aesDecryptStore(obj)
-  }
-
-  if (validatenull(obj)) return
-
+  obj = window.sessionStorage.getItem(name)
+  if (validateNull(obj)) obj = window.localStorage.getItem(name)
+  if (validateNull(obj)) return
   try {
     obj = JSON.parse(obj)
   } catch {
-    return obj
-  }
-  if (debug) {
-    return obj
+    // return obj
   }
   if (obj.dataType === 'string') {
     content = obj.content
   } else if (obj.dataType === 'number') {
     content = Number(obj.content)
   } else if (obj.dataType === 'boolean') {
-    // content = eval(obj.content);
     content = obj.content
   } else if (obj.dataType === 'object') {
     content = obj.content
   }
+  // eslint-disable-next-line consistent-return
   return content
 }
 /**
  * 删除localStorage
  */
 export const removeStore = (params = {}) => {
-  let { name, type } = params
+  const { type } = params
+  let { name } = params
   name = keyName + name
   if (type) {
     window.sessionStorage.removeItem(name)
   } else {
-    console.log('remove local ' + name)
     window.localStorage.removeItem(name)
   }
 }
@@ -79,10 +66,10 @@ export const removeStore = (params = {}) => {
  * 获取全部localStorage
  */
 export const getAllStore = (params = {}) => {
-  let list = []
-  let { type } = params
+  const list = []
+  const { type } = params
   if (type) {
-    for (let i = 0; i <= window.sessionStorage.length; i++) {
+    for (let i = 0; i <= window.sessionStorage.length; i += 1) {
       list.push({
         name: window.sessionStorage.key(i),
         content: getStore({
@@ -92,7 +79,7 @@ export const getAllStore = (params = {}) => {
       })
     }
   } else {
-    for (let i = 0; i <= window.localStorage.length; i++) {
+    for (let i = 0; i <= window.localStorage.length; i += 1) {
       list.push({
         name: window.localStorage.key(i),
         content: getStore({
@@ -108,14 +95,10 @@ export const getAllStore = (params = {}) => {
  * 清空全部localStorage
  */
 export const clearStore = (params = {}) => {
-  let { type } = params
+  const { type } = params
   if (type) {
     window.sessionStorage.clear()
   } else {
-    let issuingAuthorityList = window.localStorage.getItem('xyGS-issuingAuthorityList') || ''
-    let loginInfo = window.localStorage.getItem('xyGS-loginInfo') || ''
     window.localStorage.clear()
-    window.localStorage.setItem('xyGS-issuingAuthorityList', issuingAuthorityList)
-    window.localStorage.setItem('xyGS-loginInfo', loginInfo)
   }
 }
