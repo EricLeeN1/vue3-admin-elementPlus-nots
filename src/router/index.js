@@ -13,7 +13,10 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('@/views/dashboard/index.vue')
+    component: () => import('@/views/dashboard/index.vue'),
+    meta: {
+      title: 'Dashboard'
+    }
   }
   // {
   //   path: '/vuex',

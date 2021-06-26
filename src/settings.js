@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   title: 'Vite + Vue3 + Axios + Vue-router + Vuex',
 
   /**

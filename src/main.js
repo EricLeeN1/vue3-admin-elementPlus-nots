@@ -1,16 +1,19 @@
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
-// 引入icons组件
+import 'element-plus/lib/theme-chalk/index.css'
+
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
-import 'normalize.css'
-import 'element-plus/lib/theme-chalk/index.css' // svg component
+import 'normalize.css/normalize.css'
+
+import './permission'
 
 const app = createApp(App)
 // 注册icons组件
-app.component('svg-icon', SvgIcon)
+// 引入icons组件
+app.component('svg-icon', SvgIcon) // svg component
 // const svgModules = import.meta.glob('./icons/svg/*.svg')
 // console.log(svgModules)
 // const requireAll = (requireContext) => {
