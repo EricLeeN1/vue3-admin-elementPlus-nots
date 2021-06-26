@@ -96,6 +96,32 @@ export default {
       })
     },
 
+    // get user info
+    getInfo({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        getUserInfos(state.userInfos)
+          .then((response) => {
+            const { data } = response
+
+            if (!data) {
+              reject('Verification failed, please Login again.')
+            }
+
+            const { name, avatar_url, node_id } = data
+
+            commit('SET_TOKEN', node_id)
+            commit('SET_ROLES', ['admin'])
+            commit('SET_NAME', name)
+            commit('SET_AVATAR', avatar_url)
+            commit('SET_USERINFOS', data)
+            resolve(data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
     // user logout
     logout({ commit, state, dispatch }) {
       return new Promise((resolve, reject) => {
