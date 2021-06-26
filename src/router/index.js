@@ -1,6 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
+/* Layout */
+import Layout from '@/layout/index.vue'
 
 const routes = [
+  // {
+  //   path: '/redirect',
+  //   component: Layout,
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: '/redirect/:path(.*)',
+  //       component: () => import('@/views/redirect/index')
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     name: 'Login',
@@ -8,15 +21,16 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/dashboard'
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('@/views/dashboard/index.vue'),
-    meta: {
-      title: 'Dashboard'
-    }
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
   }
   // {
   //   path: '/vuex',

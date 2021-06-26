@@ -19,7 +19,7 @@ export default defineConfig({
   },
   base: './', // 设置打包路径
   // assetsInclude: ['.svg')], // 这里已经将src/icons/svg/下的svg全部导入，无需再单独导入
-  assetsInclude: ['.svg'],
+  assetsInclude: ['.svg', '.json'],
   server: {
     port: 9527, // 设置服务启动端口号
     open: true, // 设置服务启动时是否自动打开浏览器
