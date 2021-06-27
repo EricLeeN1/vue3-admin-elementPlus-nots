@@ -61,9 +61,7 @@ export default {
       dialogTableVisible: false
     })
     const store = useStore()
-    const errorLogs = computed(() => {
-      return store.getters.errorLogs
-    })
+    const errorLogs = computed(() => store.getters.errorLogs)
     const clearAll = () => {
       state.dialogTableVisible = false
       store.dispatch('errorLog/clearErrorLog')
