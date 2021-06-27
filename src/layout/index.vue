@@ -5,11 +5,11 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <sidebar class="sidebar-container" />
+    <!-- <sidebar class="sidebar-container" /> -->
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
-        <tags-view v-if="needTagsView" />
+        <!-- <tags-view v-if="needTagsView" /> -->
       </div>
       <app-main />
       <right-panel v-if="showSettings">
@@ -21,17 +21,17 @@
 
 <script>
 import RightPanel from '@/components/RightPanel/index.vue'
-// import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
-// import ResizeMixin from './mixin/ResizeHandler'
 import { useStore } from 'vuex'
+import { Navbar, Settings, AppMain } from './components'
+// import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'Layout',
   components: {
-    // AppMain,
-    // Navbar,
-    RightPanel
-    // Settings,
+    AppMain,
+    Navbar,
+    RightPanel,
+    Settings
     // Sidebar,
     // TagsView
   },
@@ -67,8 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/mixin.scss';
-@import '~@/styles/variables.scss';
+@import '@/styles/mixin.scss';
+@import '@/styles/variables.scss';
 
 .app-wrapper {
   @include clearfix;
