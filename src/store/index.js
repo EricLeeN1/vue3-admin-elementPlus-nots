@@ -5,6 +5,7 @@ import user from './modules/user'
 import settings from './modules/settings'
 import tagsView from './modules/tagsView'
 import errorLog from './modules/errorLog'
+import permission from './modules/permission'
 
 const production = import.meta.env.PROD
 
@@ -14,7 +15,8 @@ export default createStore({
     user,
     settings,
     tagsView,
-    errorLog
+    errorLog,
+    permission
   },
   getters,
   plugins: production ? [createLogger()] : []
