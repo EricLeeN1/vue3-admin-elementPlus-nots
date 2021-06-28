@@ -87,9 +87,10 @@ export default {
     // eslint-disable-next-line no-shadow
     const filterAffixTags = (routes, basePath = '/') => {
       let tags = []
-      console.log(routes)
+      // const routeParamss = JSON.parse(JSON.stringify(routes))
+      console.log(routes.value)
       // eslint-disable-next-line no-shadow
-      routes.forEach((route) => {
+      routes.value.forEach((route) => {
         if (route.meta && route.meta.affix) {
           const tagPath = path.resolve(basePath, route.path)
           tags.push({
