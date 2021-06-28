@@ -22,9 +22,10 @@
 <script>
 import RightPanel from '@/components/RightPanel/index.vue'
 import { useStore } from 'vuex'
+import { computed } from 'vue'
 import { Navbar, Settings, AppMain, Sidebar, TagsView } from './components'
 // import ResizeMixin from './mixin/ResizeHandler'
-
+// TODO: ADD  ResizeMixin
 export default {
   name: 'Layout',
   components: {
@@ -37,11 +38,11 @@ export default {
   },
   setup() {
     const store = useStore()
-    const sidebar = (state) => state.app.sidebar
-    const device = (state) => state.app.device
-    const showSettings = (state) => state.settings.showSettings
-    const needTagsView = (state) => state.settings.tagsView
-    const fixedHeader = (state) => state.settings.fixedHeader
+    const sidebar = computed(() => store.state.app.sidebar)
+    const device = computed(() => store.state.app.device)
+    const showSettings = computed(() => store.state.settings.showSettings)
+    const needTagsView = computed(() => store.state.settings.tagsView)
+    const fixedHeader = computed(() => store.state.settings.fixedHeader)
     const handleClickOutside = () => {
       store.dispatch('app/closeSideBar', { withoutAnimation: false })
     }

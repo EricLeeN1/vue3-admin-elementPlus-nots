@@ -1,9 +1,12 @@
-import variables from '@/styles/element-variables.scss'
+// import variables from '@/styles/element-variables.scss'
 import defaultSettings from '@/settings'
 
+const datas = import.meta.glob('../../styles/element-variables.scss?url')
+
+console.log(datas)
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 const defaultState = {
-  theme: variables.theme,
+  theme: '#1890ff',
   showSettings,
   tagsView,
   fixedHeader,
@@ -21,6 +24,7 @@ export default {
       if (state.hasOwnProperty(key)) {
         // eslint-disable-next-line no-param-reassign
         state[key] = value
+        console.log(state[key], value)
       }
     }
   },

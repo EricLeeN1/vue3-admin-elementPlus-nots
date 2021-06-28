@@ -73,7 +73,6 @@ export default {
       $scrollWrapper.scrollLeft += eventDelta / 4
     }
     onMounted(() => {
-      console.log(scrollContainer.value.$ref)
       try {
         scrollWrapper.addEventListener('scroll', emitScroll, true)
       } catch (error) {
@@ -81,7 +80,11 @@ export default {
       }
     })
     onUnmounted(() => {
-      scrollWrapper.removeEventListener('scroll', emitScroll, true)
+      try {
+        scrollWrapper.removeEventListener('scroll', emitScroll, true)
+      } catch (error) {
+        console.log(error)
+      }
     })
     return {
       ...toRefs(state),

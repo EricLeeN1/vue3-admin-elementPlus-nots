@@ -19,7 +19,7 @@
 <script>
 import { addClass, removeClass } from '@/utils'
 import { useStore } from 'vuex'
-import { ref, reactive, toRefs, onMounted, onUnmounted, watch } from 'vue'
+import { ref, reactive, toRefs, onMounted, onUnmounted, watch, computed } from 'vue'
 
 export default {
   name: 'RightPanel',
@@ -39,9 +39,7 @@ export default {
     const state = reactive({
       show: false
     })
-    const theme = () => {
-      return store.state.settings.theme
-    }
+    const theme = computed(() => store.state.settings.theme)
     const closeSidebar = (evt) => {
       const parent = evt.target.closest('.rightPanel')
       if (!parent) {

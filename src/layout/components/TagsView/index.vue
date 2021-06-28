@@ -87,8 +87,6 @@ export default {
     // eslint-disable-next-line no-shadow
     const filterAffixTags = (routes, basePath = '/') => {
       let tags = []
-      // const routeParamss = JSON.parse(JSON.stringify(routes))
-      console.log(routes.value)
       // eslint-disable-next-line no-shadow
       routes.value.forEach((route) => {
         if (route.meta && route.meta.affix) {
@@ -303,32 +301,6 @@ export default {
       cursor: pointer;
       &:hover {
         background: #eee;
-      }
-    }
-  }
-}
-</style>
-
-<style lang="scss">
-//reset element css of el-icon-close
-.tags-view-wrapper {
-  .tags-view-item {
-    .el-icon-close {
-      width: 16px;
-      height: 16px;
-      vertical-align: 2px;
-      border-radius: 50%;
-      text-align: center;
-      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transform-origin: 100% 50%;
-      &:before {
-        transform: scale(0.6);
-        display: inline-block;
-        vertical-align: -3px;
-      }
-      &:hover {
-        background-color: #b4bccc;
-        color: #fff;
       }
     }
   }

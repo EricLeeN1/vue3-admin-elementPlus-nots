@@ -35,6 +35,7 @@ import { computed } from 'vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 
 export default {
+  name: 'Settings',
   components: { ThemePicker },
   setup() {
     const store = useStore()
@@ -57,7 +58,7 @@ export default {
     })
     const tagsView = computed({
       get() {
-        return store.state.settings.tagsViews
+        return store.state.settings.tagsView
       },
       set(val) {
         store.dispatch('settings/changeSetting', {

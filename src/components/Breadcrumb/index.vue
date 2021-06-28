@@ -19,6 +19,7 @@ import { reactive, toRefs, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
+  name: 'Breadcrumb',
   setup() {
     const state = reactive({
       levelList: null
