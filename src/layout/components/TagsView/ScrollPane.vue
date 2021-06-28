@@ -22,11 +22,12 @@ export default {
       left: 0
     })
     const scrollContainer = ref(null)
-    const scrollWrapper = computed(() => scrollContainer.value.$refs.wrap)
+    const scrollWrapper = computed(() => scrollContainer.value.$refs)
     const emitScroll = () => {
       emit('scroll')
     }
     const moveToTarget = (currentTag) => {
+      // 所有的组件都有一个属性$el:用于获取组件中的元素
       const $container = scrollContainer.value.$el
       const $containerWidth = $container.offsetWidth
       const $scrollWrapper = scrollWrapper
@@ -72,7 +73,7 @@ export default {
       $scrollWrapper.scrollLeft += eventDelta / 4
     }
     onMounted(() => {
-      console.log(scrollWrapper)
+      console.log(scrollContainer.value.$ref)
       try {
         scrollWrapper.addEventListener('scroll', emitScroll, true)
       } catch (error) {
