@@ -5,11 +5,11 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <!-- <sidebar class="sidebar-container" /> -->
+    <sidebar class="sidebar-container" />
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
-        <!-- <tags-view v-if="needTagsView" /> -->
+        <tags-view v-if="needTagsView" />
       </div>
       <app-main />
       <right-panel v-if="showSettings">
@@ -22,7 +22,7 @@
 <script>
 import RightPanel from '@/components/RightPanel/index.vue'
 import { useStore } from 'vuex'
-import { Navbar, Settings, AppMain } from './components'
+import { Navbar, Settings, AppMain, Sidebar, TagsView } from './components'
 // import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -31,9 +31,9 @@ export default {
     AppMain,
     Navbar,
     RightPanel,
-    Settings
-    // Sidebar,
-    // TagsView
+    Settings,
+    Sidebar,
+    TagsView
   },
   setup() {
     const store = useStore()
