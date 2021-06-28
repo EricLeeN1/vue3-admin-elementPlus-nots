@@ -20,7 +20,7 @@
 
 <script>
 import { reactive, computed, toRefs, nextTick } from 'vue'
-import { ElMessage } from 'element-plus'
+import ElementPlus, { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -53,7 +53,7 @@ export default {
     }
     // eslint-disable-next-line no-shadow
     const handleSetSize = (size) => {
-      this.$ELEMENT.size = size
+      ElementPlus.size = size
       store.dispatch('app/setSize', size)
       refreshView()
       ElMessage({

@@ -17,15 +17,14 @@
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
-        <el-tooltip content="Global Size" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+        <size-select id="size-select" class="right-menu-item hover-effect" />
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
-          <i class="el-icon-caret-bottom" />
+          <i class="el-icon-delete"></i>
+          <!-- <i class="el-icon-caret-bottom" /> -->
         </div>
         <template #dropdown>
           <el-dropdown-menu>
@@ -129,19 +128,21 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
+    display: flex;
+    align-items: center;
     line-height: 50px;
 
     &:focus {
       outline: none;
     }
 
-    .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
+    ::v-deep .right-menu-item {
+      padding: 0 16px;
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
-      vertical-align: text-bottom;
+      display: flex;
+      align-items: center;
 
       &.hover-effect {
         cursor: pointer;
@@ -153,17 +154,23 @@ export default {
       }
     }
 
-    .avatar-container {
-      margin-right: 30px;
+    ::v-deep .avatar-container {
+      padding-right: 50px;
+      display: flex;
+      width: 100%;
+      align-items: center;
 
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
+        display: flex;
+        width: 100%;
+        align-items: center;
 
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
+          display: block;
           border-radius: 10px;
         }
 
