@@ -1,8 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <span slot="title">{{ title }}</span>
+  </div>
 </template>
 
 <script>
+import { h } from 'vue'
+
 export default {
   name: 'MenuItem',
   functional: true,
@@ -19,10 +23,11 @@ export default {
   setup() {
     return {}
   },
-  render(h, context) {
-    const { icon, title } = context.props
-    const vnodes = []
-    console.log(icon, title)
+  render(context) {
+    console.log(context)
+    // const { icon, title } = context.props
+    // const vnodes = []
+    // console.log(icon, title)
 
     // if (icon) {
     //   if (icon.includes('el-icon')) {
@@ -32,10 +37,11 @@ export default {
     //   }
     // }
 
-    // if (title) {
-    //   vnodes.push(<span slot='title'>{(title)}</span>)
-    // }
-    return vnodes
+    return h('div', [
+      h('header', this.$slots.header()),
+      h('main', this.$slots.default()),
+      h('footer', this.$slots.footer())
+    ])
   }
 }
 </script>

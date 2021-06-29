@@ -42,14 +42,16 @@ router.beforeEach(async (to, from, next) => {
 
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-
-          // dynamically add accessible routes
-          router.addRoute(accessRoutes)
+          accessRoutes.forEach((route) => {
+            // dynamically add accessible routes
+            router.addRoute(route)
+          })
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (error) {
+          console.log(error)
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
           ElMessage.error(error || 'Has Error')

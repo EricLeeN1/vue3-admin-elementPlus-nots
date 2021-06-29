@@ -65,6 +65,7 @@ export default {
 
     const addTags = () => {
       const { name } = route
+      console.log(name)
       if (name) {
         store.dispatch('tagsView/addView', route)
       }
@@ -150,7 +151,7 @@ export default {
       // eslint-disable-next-line no-shadow
       store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
         if (isActive(view)) {
-          toLastView(visitedViews, view)
+          toLastView(visitedViews.value, view)
         }
       })
     }
@@ -168,7 +169,7 @@ export default {
         if (state.affixTags.some((tag) => tag.path === view.path)) {
           return
         }
-        toLastView(visitedViews, view)
+        toLastView(visitedViews.value, view)
       })
     }
 
@@ -198,7 +199,8 @@ export default {
     }
     watch(
       () => route,
-      () => {
+      (val) => {
+        console.log(val)
         addTags()
         moveToCurrentTag()
       }

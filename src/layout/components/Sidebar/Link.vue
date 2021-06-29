@@ -18,13 +18,13 @@ export default {
   setup(props) {
     const isExternalRes = computed(() => isExternal(props.to))
     const type = computed(() => {
-      if (isExternalRes) {
+      if (isExternalRes.value) {
         return 'a'
       }
       return 'router-link'
     })
     const linkProps = (to) => {
-      if (isExternalRes) {
+      if (isExternalRes.value) {
         return {
           href: to,
           target: '_blank',
@@ -33,11 +33,12 @@ export default {
       }
       return {
         to,
-        type,
-        linkProps
+        type: type.value,
+        linkProps: linkProps.value
       }
     }
     return {
+      type,
       linkProps
     }
   }

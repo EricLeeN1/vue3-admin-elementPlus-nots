@@ -53,14 +53,14 @@
 <script>
 import clipboard from '@/utils/clipboard'
 import { reactive, toRefs } from 'vue'
-import svgIcons from './svg-icons'
+// import svgIcons from './svg-icons'
 import elementIcons from './element-icons'
 
 export default {
   name: 'Icons',
   setup() {
     const state = reactive({
-      svgIcons,
+      svgIcons: [],
       elementIcons
     })
     const generateIconCode = (symbol) => {
