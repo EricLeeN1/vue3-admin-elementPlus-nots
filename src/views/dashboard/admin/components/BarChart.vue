@@ -3,17 +3,15 @@
 </template>
 
 <script>
+import { debounce } from '@/utils'
 import * as echarts from 'echarts'
-import { ref, nextTick, onMounted, onUnmounted } from 'vue'
-// import resize from './mixins/resize'
-// TODO: resize添加
+import { ref, reactive, toRefs, nextTick, onMounted, onUnmounted } from 'vue'
 // import macarons2 from 'echarts/theme/macarons2.js'
 // require('echarts/theme/macarons')
 // TODO add 主题引用
 let chart = null
 const animationDuration = 6000
 export default {
-  // mixins: [resize],
   props: {
     className: {
       type: String,
@@ -29,6 +27,10 @@ export default {
     }
   },
   setup() {
+    const state = reactive({
+      sidebarElm: null,
+      resizeHandler: null
+    })
     const barChart = ref(null)
     const initChart = () => {
       chart = echarts.init(barChart.value, 'macarons')
@@ -93,9 +95,38 @@ export default {
         ]
       })
     }
+    const initResizeEvent = () => {
+      window.addEventListener('resize', state.resizeHandler)
+    }
+    const destroyResizeEvent = () => {
+      window.removeEventListener('resize', state.resizeHandler)
+    }
+    const sidebarResizeHandler = (e) => {
+      if (e.propertyName === 'width') {
+        state.resizeHandler()
+      }
+    }
+    const initSidebarResizeEvent = () => {
+      // eslint-disable-next-line prefer-destructuring
+      state.sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+      if (state.sidebarElm) {
+        state.sidebarElm.addEventListener('transitionend', sidebarResizeHandler)
+      }
+    }
+    const destroySidebarResizeEvent = () => {
+      if (state.sidebarElm) {
+        state.sidebarElm.removeEventListener('transitionend', sidebarResizeHandler)
+      }
+    }
     onMounted(() => {
       nextTick(() => {
         initChart()
+        state.resizeHandler = debounce(() => {
+          console.log(chart)
+          if (chart) {
+            chart.resize()
+          }
+        }, 100)
       })
     })
     onUnmounted(() => {
@@ -103,11 +134,19 @@ export default {
         return
       }
       chart.dispose()
+      destroyResizeEvent()
+      destroySidebarResizeEvent()
       chart = null
     })
     return {
+      ...toRefs(state),
       barChart,
-      initChart
+      initChart,
+      initResizeEvent,
+      destroyResizeEvent,
+      sidebarResizeHandler,
+      destroySidebarResizeEvent,
+      initSidebarResizeEvent
     }
   }
 }
