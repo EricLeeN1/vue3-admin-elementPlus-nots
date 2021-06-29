@@ -22,10 +22,13 @@
 <script>
 import RightPanel from '@/components/RightPanel/index.vue'
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, watch, onMounted, onUnmounted, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 import { Navbar, Settings, AppMain, Sidebar, TagsView } from './components'
-// import ResizeMixin from './mixin/ResizeHandler'
-// TODO: ADD  ResizeMixin
+
+const { body } = document
+const WIDTH = 992 // refer to Bootstrap's responsive design
+
 export default {
   name: 'Layout',
   components: {
@@ -38,13 +41,14 @@ export default {
   },
   setup() {
     const store = useStore()
+    const route = useRoute()
     const sidebar = computed(() => store.state.app.sidebar)
     const device = computed(() => store.state.app.device)
     const showSettings = computed(() => store.state.settings.showSettings)
     const needTagsView = computed(() => store.state.settings.tagsView)
     const fixedHeader = computed(() => store.state.settings.fixedHeader)
-    const handleClickOutside = () => {
-      store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    const handleClickOutside = (bol = false) => {
+      store.dispatch('app/closeSideBar', { withoutAnimation: bol })
     }
     const classObj = () => {
       return {
@@ -54,6 +58,35 @@ export default {
         mobile: device === 'mobile'
       }
     }
+    const isMobile = () => {
+      const rect = body.getBoundingClientRect()
+      return rect.width - 1 < WIDTH
+    }
+    const resizeHandler = () => {
+      if (!document.hidden) {
+        const isMob = isMobile()
+        store.dispatch('app/toggleDevice', isMob ? 'mobile' : 'desktop')
+
+        if (isMob) {
+          handleClickOutside(true)
+        }
+      }
+    }
+    watch(
+      () => route,
+      () => {
+        if (device.value === 'mobile' && sidebar.opened) {
+          handleClickOutside(true)
+        }
+      }
+    )
+    onBeforeMount(() => {
+      window.addEventListener('resize', resizeHandler)
+    })
+    onMounted(() => {})
+    onUnmounted(() => {
+      window.removeEventListener('resize', resizeHandler)
+    })
     return {
       sidebar,
       device,
@@ -61,7 +94,9 @@ export default {
       needTagsView,
       fixedHeader,
       classObj,
-      handleClickOutside
+      handleClickOutside,
+      resizeHandler,
+      isMobile
     }
   }
 }
