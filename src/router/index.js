@@ -68,18 +68,29 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index.vue'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: constantRoutes
-})
+const baseOptions = { history: createWebHistory(), routes: constantRoutes }
+
+const router = createRouter(baseOptions)
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
+  const newRouter = createRouter(baseOptions)
   router.matcher = newRouter.matcher // reset router
 }
 

@@ -45,7 +45,7 @@ export default {
     const headerSearchSelect = ref(null)
     const router = useRouter()
     const store = useStore()
-    const routes = computed(() => store.getters.permission_routes)
+    const routes = computed(() => store.getters.permissionRoutes)
     const click = () => {
       state.show = !state.show
       if (state.show) {
@@ -167,7 +167,7 @@ export default {
     display: inline-block;
     vertical-align: middle;
 
-    ::v-deep .el-input__inner {
+    :deep .el-input__inner {
       border-radius: 0;
       border: 0;
       padding-left: 0;

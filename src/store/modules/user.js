@@ -76,7 +76,6 @@ export default {
       return new Promise((resolve, reject) => {
         getUserInfos({ username: username.trim(), password })
           .then((response) => {
-            console.log(response)
             const { data } = response
             if (!data) {
               reject('Verification failed, please Login again.')
@@ -88,6 +87,7 @@ export default {
             commit('SET_NAME', name)
             commit('SET_AVATAR', avatar_url)
             commit('SET_USERINFOS', data)
+
             resolve(data)
           })
           .catch((error) => {

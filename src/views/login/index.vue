@@ -171,7 +171,6 @@ export default {
       loginFormRef.value.validate((valid) => {
         if (valid) {
           state.loading = true
-          console.log(store.user)
           store
             .dispatch('user/login', state.form)
             .then(() => {

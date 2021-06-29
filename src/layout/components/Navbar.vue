@@ -34,7 +34,7 @@
             <router-link to="/">
               <el-dropdown-item>Dashboard</el-dropdown-item>
             </router-link>
-            <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
+            <a target="_blank" href="https://github.com/EricLeeN1/vue3-admin-element-nots.git/">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
             <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
@@ -136,7 +136,7 @@ export default {
       outline: none;
     }
 
-    ::v-deep .right-menu-item {
+    :deep .right-menu-item {
       padding: 0 16px;
       height: 100%;
       font-size: 18px;
@@ -154,7 +154,7 @@ export default {
       }
     }
 
-    ::v-deep .avatar-container {
+    :deep .avatar-container {
       padding-right: 50px;
       display: flex;
       width: 100%;

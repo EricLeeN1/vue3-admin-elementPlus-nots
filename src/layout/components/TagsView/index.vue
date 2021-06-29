@@ -53,7 +53,7 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const visitedViews = computed(() => store.getters.visitedViews)
-    const routes = computed(() => store.getters.permission_routes)
+    const routes = computed(() => store.getters.permissionRoutes)
 
     // eslint-disable-next-line no-shadow
     const isActive = (rou) => {

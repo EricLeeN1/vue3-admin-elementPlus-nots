@@ -1,9 +1,8 @@
 // import variables from '@/styles/element-variables.scss'
 import defaultSettings from '@/settings'
 
-const datas = import.meta.glob('../../styles/element-variables.scss?url')
+// const datas = import.meta.glob('../../styles/element-variables.scss?url')
 
-console.log(datas)
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 const defaultState = {
   theme: '#1890ff',

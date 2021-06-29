@@ -38,7 +38,7 @@ export default {
     const route = useRoute()
     const store = useStore()
     const sidebar = computed(() => store.getters.sidebar)
-    const permissionRoutes = computed(() => store.getters.permission_routes)
+    const permissionRoutes = computed(() => store.getters.permissionRoutes)
     const showLogo = computed(() => store.state.settings.sidebarLogo)
     const isCollapse = computed(() => !sidebar.opened)
     const variables = computed(() => variable)
