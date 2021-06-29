@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import path from 'path'
+// import path from 'path'
 import { isExternal } from '@/utils/validate'
 import { reactive, toRefs } from 'vue'
 import Item from './Item.vue'
@@ -99,7 +99,10 @@ export default {
       if (isExternal(props.basePath)) {
         return props.basePath
       }
-      return path.resolve(props.basePath, routePath)
+      if (props.basePath === '/') {
+        return props.basePath + routePath
+      }
+      return `${props.basePath}/${routePath}`
     }
     return {
       ...toRefs(state),

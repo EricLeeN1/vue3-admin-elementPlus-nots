@@ -8,6 +8,8 @@ import router from './router/index'
 import store from './store/index'
 import 'normalize.css/normalize.css'
 
+import '@/styles/index.scss' // global css
+
 import './permission'
 
 const app = createApp(App)
