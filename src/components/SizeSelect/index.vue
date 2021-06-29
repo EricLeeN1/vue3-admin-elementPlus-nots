@@ -19,13 +19,14 @@
 </template>
 
 <script>
-import { reactive, computed, toRefs, nextTick } from 'vue'
-import ElementPlus, { ElMessage } from 'element-plus'
+import { reactive, computed, toRefs, nextTick, getCurrentInstance } from 'vue'
+import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
   setup() {
+    const internalInstance = getCurrentInstance()
     const state = reactive({
       sizeOptions: [
         { label: 'Default', value: 'default' },
@@ -53,7 +54,7 @@ export default {
     }
     // eslint-disable-next-line no-shadow
     const handleSetSize = (size) => {
-      ElementPlus.size = size
+      internalInstance.appContext.config.globalProperties.$ELEMENT.size = size
       store.dispatch('app/setSize', size)
       refreshView()
       ElMessage({
