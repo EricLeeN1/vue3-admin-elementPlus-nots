@@ -31,6 +31,7 @@ import variable from '@/styles/variables.scss'
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
 
+console.log(variable)
 export default {
   name: 'Sidebar',
   components: { SidebarItem, Logo },
@@ -41,7 +42,20 @@ export default {
     const permissionRoutes = computed(() => store.getters.permissionRoutes)
     const showLogo = computed(() => store.state.settings.sidebarLogo)
     const isCollapse = computed(() => !sidebar.opened)
-    const variables = computed(() => variable)
+    const variables = computed(() => {
+      return (
+        {
+          menuText: '#bfcbd9',
+          menuActiveText: '#409EFF',
+          subMenuActiveText: '#f4f4f5',
+          menuBg: '#304156',
+          menuHover: '#263445',
+          subMenuBg: '#1f2d3d',
+          subMenuHover: '#001528',
+          sideBarWidth: '210px'
+        } || variable
+      )
+    })
     const activeMenu = computed(() => {
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set

@@ -33,7 +33,7 @@
 import path from 'path'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { ref, reactive, toRefs, watch, onMounted, computed, nextTick } from 'vue'
+import { ref, reactive, toRefs, watch, onMounted, computed, nextTick, watchEffect } from 'vue'
 import ScrollPane from './ScrollPane.vue'
 
 export default {
@@ -197,7 +197,7 @@ export default {
     const handleScroll = () => {
       closeMenu()
     }
-    watch(
+    watchEffect(
       () => route,
       (val) => {
         console.log(val)
