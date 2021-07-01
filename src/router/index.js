@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 /* Layout */
 import Layout from '@/layout/index.vue'
 
+/* Router Modules */
+import componentsRouter from './modules/components'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -28,8 +30,6 @@ import Layout from '@/layout/index.vue'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-
-// TODO: 重定向
 export const constantRoutes = [
   {
     path: '/redirect',
@@ -131,6 +131,38 @@ export const asyncRoutes = [
         component: () => import('@/views/icons/index.vue'),
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  componentsRouter,
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/list',
+    name: 'Example',
+    meta: {
+      title: 'Example',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      // {
+      //   path: 'create',
+      //   component: () => import('@/views/example/create'),
+      //   name: 'CreateArticle',
+      //   meta: { title: 'Create Article', icon: 'edit' }
+      // },
+      // {
+      //   path: 'edit/:id(\\d+)',
+      //   component: () => import('@/views/example/edit'),
+      //   name: 'EditArticle',
+      //   meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+      //   hidden: true
+      // },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list.vue'),
+        name: 'ArticleList',
+        meta: { title: 'Article List', icon: 'list' }
       }
     ]
   }

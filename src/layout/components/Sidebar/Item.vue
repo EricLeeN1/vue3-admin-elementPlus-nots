@@ -1,11 +1,13 @@
 <template>
   <div>
+    <i :class="[icon, 'sub-el-icon']" v-if="elIcon" />
+    <svg-icon :icon-class="icon" v-else />
     <span slot="title">{{ title }}</span>
   </div>
 </template>
 
 <script>
-import { h } from 'vue'
+import { computed, h } from 'vue'
 
 export default {
   name: 'MenuItem',
@@ -20,8 +22,11 @@ export default {
       default: ''
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+    const elIcon = computed(() => props.icon.includes('el-icon'))
+    return {
+      elIcon
+    }
   },
   render(context) {
     console.log(context)

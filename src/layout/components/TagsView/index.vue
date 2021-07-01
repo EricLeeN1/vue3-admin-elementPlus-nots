@@ -65,7 +65,6 @@ export default {
 
     const addTags = () => {
       const { name } = route
-      console.log(name)
       if (name) {
         store.dispatch('tagsView/addView', route)
       }
