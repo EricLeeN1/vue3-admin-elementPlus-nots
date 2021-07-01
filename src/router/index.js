@@ -179,6 +179,18 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/theme',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/theme/index.vue'),
+        name: 'Theme',
+        meta: { title: 'Theme', icon: 'theme' }
+      }
+    ]
+  },
+  {
     path: '/clipboard',
     component: Layout,
     children: [
