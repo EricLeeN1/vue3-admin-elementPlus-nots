@@ -60,7 +60,9 @@ export default {
     })
     onUnmounted(() => {
       const elx = rightPanelRef.value
-      elx.remove()
+      if (elx) {
+        elx.remove()
+      }
     })
     watch(
       () => state.show,

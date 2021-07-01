@@ -165,9 +165,10 @@ export const asyncRoutes = [
         meta: { title: 'Article List', icon: 'list' }
       }
     ]
-  }
+  },
   // 404 page must be placed at the end !!!
-  // { path: '*', redirect: '/404', hidden: true }
+  // 打算直接使用未匹配的路径名称导航到该路径，这是必要的
+  { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/404', hidden: true }
 ]
 
 const baseOptions = { history: createWebHistory(), routes: constantRoutes }
