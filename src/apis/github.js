@@ -1,4 +1,4 @@
-import request from '@/utils/axios'
+import request from '@/request'
 
 export function getUserInfos(params) {
   return request({
@@ -10,7 +10,7 @@ export function getUserInfos(params) {
 
 export function transactionList(params = { page: 1, per_page: 5 }) {
   return request({
-    url: '/users/EricLeeN1/repos',
+    url: '/api/users/EricLeeN1/repos',
     method: 'get',
     params
   })

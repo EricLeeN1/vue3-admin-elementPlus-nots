@@ -33,9 +33,11 @@ export default {
       lists: []
     })
     const fetchData = () => {
-      transactionList().then((response) => {
-        state.lists = response.data
-      })
+      for (let index = 0; index < 10; index += 1) {
+        transactionList().then((response) => {
+          state.lists = response.data
+        })
+      }
     }
     onMounted(() => {
       fetchData()
