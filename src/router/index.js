@@ -178,6 +178,16 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://github.com/EricLeeN1/vue3-admin-element-nots.git',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   // 打算直接使用未匹配的路径名称导航到该路径，这是必要的
   { path: '/:pathMatch(.*)*', name: 'not-found', redirect: '/404', hidden: true }
