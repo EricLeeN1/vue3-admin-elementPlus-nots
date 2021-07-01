@@ -179,6 +179,18 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/clipboard',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/clipboard/index.vue'),
+        name: 'ClipboardDemo',
+        meta: { title: 'Clipboard', icon: 'clipboard' }
+      }
+    ]
+  },
+  {
     path: '/external-link',
     component: Layout,
     children: [
