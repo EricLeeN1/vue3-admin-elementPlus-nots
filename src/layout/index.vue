@@ -50,14 +50,14 @@ export default {
     const handleClickOutside = (bol = false) => {
       store.dispatch('app/closeSideBar', { withoutAnimation: bol })
     }
-    const classObj = () => {
+    const classObj = computed(() => {
       return {
-        hideSidebar: sidebar.opened,
-        openSidebar: sidebar.opened,
-        withoutAnimation: sidebar.withoutAnimation,
-        mobile: device === 'mobile'
+        hideSidebar: !sidebar.value.opened,
+        openSidebar: sidebar.value.opened,
+        withoutAnimation: sidebar.value.withoutAnimation,
+        mobile: device.value === 'mobile'
       }
-    }
+    })
     const isMobile = () => {
       const rect = body.getBoundingClientRect()
       return rect.width - 1 < WIDTH
@@ -75,7 +75,7 @@ export default {
     watch(
       () => route,
       () => {
-        if (device.value === 'mobile' && sidebar.opened) {
+        if (device.value === 'mobile' && sidebar.value.opened) {
           handleClickOutside(true)
         }
       }

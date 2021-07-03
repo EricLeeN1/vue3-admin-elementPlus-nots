@@ -2,7 +2,7 @@ import request from '@/request'
 
 export function getUserInfos(params) {
   return request({
-    url: '/users/EricLeeN1',
+    url: '/api/users/EricLeeN1',
     method: 'get',
     params
   })

@@ -75,8 +75,7 @@ export default {
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
         getUserInfos({ username: username.trim(), password })
-          .then((response) => {
-            const { data } = response
+          .then((data) => {
             if (!data) {
               reject('Verification failed, please Login again.')
             }

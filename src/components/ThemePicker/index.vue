@@ -24,7 +24,7 @@ import { version } from 'element-plus/package.json'
 // element-plus version from node_modules
 const ORIGINAL_THEME = '#409EFF' // default color
 export default {
-  emit: ['change'],
+  emits: ['change'],
   setup(props, ctx) {
     const store = useStore()
     const state = reactive({

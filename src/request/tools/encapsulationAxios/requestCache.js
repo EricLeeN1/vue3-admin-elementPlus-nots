@@ -18,7 +18,7 @@ function getNowTime() {
 }
 
 // 初始化
-;(function () {
+;(() => {
   const cache = window.localStorage.getItem(options.storageKey)
   if (cache) {
     const { storageExpire } = JSON.parse(cache)
@@ -35,8 +35,11 @@ function getNowTime() {
 
 function getCacheItem(key) {
   const cache = window.localStorage.getItem(options.storageKey)
-  const { data, storageExpire } = JSON.parse(cache)
-  return (data && data[key]) || null
+  if (cache) {
+    const { data } = JSON.parse(cache)
+    return (data && data[key]) || null
+  }
+  return null
 }
 function setCacheItem(key, value) {
   const cache = window.localStorage.getItem(options.storageKey)

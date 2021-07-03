@@ -15,7 +15,7 @@ import { ref, reactive, toRefs, computed, onMounted, onUnmounted } from 'vue'
 const tagAndTagSpacing = 4 // tagAndTagSpacing
 export default {
   name: 'ScrollPane',
-  emit: ['scroll'],
+  emits: ['scroll'],
   // setup(props, { attrs, slots, emit }) {
   setup(props, { emit }) {
     const state = reactive({

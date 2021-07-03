@@ -39,7 +39,7 @@ export default {
       }
     }
   },
-  emit: ['deleteTodo', 'editTodo', 'toggleTodo'],
+  emits: ['deleteTodo', 'editTodo', 'toggleTodo'],
   setup(props, ctx) {
     const state = reactive({
       editing: false

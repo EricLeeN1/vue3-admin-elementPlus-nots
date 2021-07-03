@@ -54,7 +54,7 @@ import { reactive, toRefs, onBeforeMount } from 'vue'
 import { transactionList } from '@/apis/github'
 
 export default {
-  emit: ['create'],
+  emits: ['create'],
   props: {
     type: {
       type: String,

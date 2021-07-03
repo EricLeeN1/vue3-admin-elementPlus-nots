@@ -10,7 +10,7 @@ const defaultState = {
           name: 'sidebarStatus'
         })
       : true,
-    withoutAnimation: false
+    withoutAnimation: true
   },
   device: 'desktop',
   size:
