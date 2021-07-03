@@ -97,6 +97,7 @@ export default {
     const getList = () => {
       state.listLoading = true
       transactionList(state.listQuery).then((res) => {
+        console.log(res)
         state.list = res
         // state.total = res
         state.listLoading = false
