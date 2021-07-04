@@ -1,9 +1,14 @@
 <template>
-  <div></div>
+  <div>
+    <!--error code-->
+    <!-- {{ a.a }} -->
+    <!--error code-->
+  </div>
 </template>
 
 <script>
 export default {
+  name: 'ErrorTestA',
   setup() {
     return {}
   }
