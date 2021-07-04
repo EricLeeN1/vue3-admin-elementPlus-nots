@@ -67,6 +67,8 @@ import FilenameOption from './components/FilenameOption.vue'
 import AutoWidthOption from './components/AutoWidthOption.vue'
 import BookTypeOption from './components/BookTypeOption.vue'
 
+// TODO add v-model 父子组件双向绑定处理
+
 export default {
   name: 'ExportExcel',
   components: { FilenameOption, AutoWidthOption, BookTypeOption },

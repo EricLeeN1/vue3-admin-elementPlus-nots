@@ -179,6 +179,19 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/error-log',
+    component: Layout,
+    children: [
+      {
+        path: 'log',
+        component: () => import('@/views/error-log/index.vue'),
+        name: 'ErrorLog',
+        meta: { title: 'Error Log', icon: 'bug' }
+      }
+    ]
+  },
+  // TODO Excel部分继续完成
+  {
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
