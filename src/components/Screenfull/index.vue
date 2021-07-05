@@ -17,7 +17,7 @@ export default {
     })
     // eslint-disable-next-line consistent-return
     const click = () => {
-      if (!screenfull.enabled) {
+      if (!screenfull.isEnabled) {
         ElMessage({
           message: 'you browser can not work',
           type: 'warning'
@@ -30,12 +30,12 @@ export default {
       state.isFullscreen = screenfull.isFullscreen
     }
     const init = () => {
-      if (screenfull.enabled) {
+      if (screenfull.isEnabled) {
         screenfull.on('change', change)
       }
     }
     const destroy = () => {
-      if (screenfull.enabled) {
+      if (screenfull.isEnabled) {
         screenfull.off('change', change)
       }
     }
