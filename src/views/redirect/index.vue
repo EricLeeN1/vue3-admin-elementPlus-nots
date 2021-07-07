@@ -1,5 +1,5 @@
 <script>
-import { onMounted, h } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
@@ -12,10 +12,10 @@ export default {
       router.replace({ path: `/${path}`, query })
     })
     return {}
-  },
-  render() {
-    return h() // avoid warning message
   }
+  // render() {
+  //   return h() // avoid warning message
+  // }
 }
 </script>
 

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { ref, onBeforeMount, computed } from 'vue'
+import { ref, onBeforeMount, computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import adminDashboard from './admin/index.vue'
 import editorDashboard from './editor/index.vue'
 
-export default {
+export default defineComponent({
   name: 'Dashboard',
   components: { adminDashboard, editorDashboard },
   setup() {
@@ -27,7 +27,7 @@ export default {
       currentRole
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped></style>
