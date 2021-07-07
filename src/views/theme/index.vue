@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-card class="box-card">
-      <div slot="header">
+      <template #header>
         <a
           class="link-type link-title"
           target="_blank"
@@ -9,7 +9,7 @@
         >
           Theme documentation
         </a>
-      </div>
+      </template>
       <div class="box-item">
         <span class="field-label">Change Theme : </span>
         <el-switch v-model="theme" />

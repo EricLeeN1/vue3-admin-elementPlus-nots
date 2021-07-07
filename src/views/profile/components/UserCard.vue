@@ -1,8 +1,10 @@
 <template>
   <el-card style="margin-bottom: 20px">
-    <div slot="header" class="clearfix">
-      <span>About me</span>
-    </div>
+    <template #header>
+      <div class="clearfix">
+        <span>About me</span>
+      </div>
+    </template>
 
     <div class="user-profile">
       <div class="box-center">
