@@ -2,6 +2,7 @@
   <el-scrollbar
     ref="scrollContainer"
     :vertical="false"
+    :noresize="true"
     class="scroll-container"
     @wheel.native.prevent="handleScroll"
   >

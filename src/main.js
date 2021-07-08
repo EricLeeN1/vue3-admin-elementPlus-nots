@@ -16,15 +16,5 @@ const app = createApp(App)
 // 注册icons组件
 // 引入icons组件
 app.component('svg-icon', SvgIcon) // svg component
-// const svgModules = import.meta.glob('./icons/svg/*.svg')
-// console.log(svgModules)
-// const requireAll = (requireContext) => {
-//   const { entries } = Object
 
-//   for (const [key] of entries(requireContext)) {
-//     console.log(key) // ['a', 1], ['b', 2], ['c', 3]
-//   }
-//   return requireContext
-// }
-// requireAll(svgModules)
 app.use(router).use(store).use(ElementPlus).mount('#app')

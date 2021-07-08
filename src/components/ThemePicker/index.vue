@@ -1,6 +1,7 @@
 <template>
   <el-color-picker
     v-model="theme"
+    show-alpha
     :predefine="[
       '#409EFF',
       '#1890ff',
