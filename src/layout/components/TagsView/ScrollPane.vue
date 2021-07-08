@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, toRefs, computed, onMounted, onUnmounted, getCurrentInstance } from 'vue'
 
 const tagAndTagSpacing = 4 // tagAndTagSpacing
 export default {
@@ -22,8 +22,11 @@ export default {
     const state = reactive({
       left: 0
     })
+    const instance = getCurrentInstance()
     const scrollContainer = ref(null)
-    const scrollWrapper = computed(() => scrollContainer.value.$refs)
+    const scrollWrapper = computed(() => {
+      return scrollContainer.value.$refs.wrap
+    })
     const emitScroll = () => {
       emit('scroll')
     }
@@ -32,11 +35,9 @@ export default {
       const $container = scrollContainer.value.$el
       const $containerWidth = $container.offsetWidth
       const $scrollWrapper = scrollWrapper
-      const tagList = scrollContainer.value.$parent.$refs.tagRef
-
+      const tagList = instance.parent.ctx.tagsRef
       let firstTag = null
       let lastTag = null
-
       // find first tag and last tag
       if (tagList.length > 0) {
         // eslint-disable-next-line prefer-destructuring
@@ -74,18 +75,10 @@ export default {
       $scrollWrapper.scrollLeft += eventDelta / 4
     }
     onMounted(() => {
-      try {
-        scrollWrapper.addEventListener('scroll', emitScroll, true)
-      } catch (error) {
-        console.log(error)
-      }
+      scrollWrapper.value.addEventListener('scroll', emitScroll, true)
     })
     onUnmounted(() => {
-      try {
-        scrollWrapper.removeEventListener('scroll', emitScroll, true)
-      } catch (error) {
-        console.log(error)
-      }
+      scrollWrapper.value.removeEventListener('scroll', emitScroll, true)
     })
     return {
       ...toRefs(state),
