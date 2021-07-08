@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { viteMockServe } from 'vite-plugin-mock'
 import vue from '@vitejs/plugin-vue'
 // 如果编辑器提示 path 模块找不到，则可以安装一下 @types/node -> npm i @types/node -D
 import { resolve } from 'path'
@@ -6,7 +7,16 @@ import svgLoader from './plugins/svg-loader'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), svgLoader('./src/icons/svg/')],
+  plugins: [
+    vue(),
+    svgLoader('./src/icons/svg/'),
+    viteMockServe({
+      // default
+      mockPath: 'mock',
+      localEnabled: true
+    })
+  ],
+  // TODO: MOCK 开启环境支持自定义
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录，
