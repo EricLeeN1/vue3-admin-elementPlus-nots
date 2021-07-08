@@ -2,8 +2,12 @@
   <div id="tags-view-container" class="tags-view-container">
     <scroll-pane ref="scrollPaneRef" class="tags-view-wrapper" @scroll="handleScroll">
       <router-link
-        v-for="tag in visitedViews"
-        ref="tagRef"
+        v-for="(tag, i) in visitedViews"
+        :ref="
+          (el) => {
+            if (el) tagsRef[i] = el
+          }
+        "
         :key="tag.path"
         :class="isActive(tag) ? 'active' : ''"
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
@@ -33,14 +37,14 @@
 import path from 'path'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { ref, reactive, toRefs, watch, onMounted, computed, nextTick, watchEffect } from 'vue'
+import { ref, reactive, toRefs, watch, onMounted, computed, nextTick, onBeforeUpdate } from 'vue'
 import ScrollPane from './ScrollPane.vue'
 
 export default {
   name: 'TagsView',
   components: { ScrollPane },
   setup() {
-    const tagRef = ref(null)
+    const tagsRef = ref([])
     const scrollPaneRef = ref(null)
     const state = reactive({
       visible: false,
@@ -54,7 +58,10 @@ export default {
     const router = useRouter()
     const visitedViews = computed(() => store.getters.visitedViews)
     const routes = computed(() => store.getters.permissionRoutes)
-
+    // 确保在每次更新之前重置ref
+    onBeforeUpdate(() => {
+      tagsRef.value = []
+    })
     // eslint-disable-next-line no-shadow
     const isActive = (rou) => {
       return rou.path === route.path
@@ -71,7 +78,7 @@ export default {
       return false
     }
     const moveToCurrentTag = () => {
-      const tags = tagRef.value
+      const tags = tagsRef.value
       nextTick(() => {
         tags.forEach((tag) => {
           if (tag.to.path === route.path) {
@@ -196,12 +203,14 @@ export default {
     const handleScroll = () => {
       closeMenu()
     }
-    watchEffect(
+    watch(
       () => route,
-      (val) => {
-        console.log(val)
+      () => {
         addTags()
         moveToCurrentTag()
+      },
+      {
+        deep: true
       }
     )
     watch(
@@ -220,7 +229,7 @@ export default {
     })
     return {
       ...toRefs(state),
-      tagRef,
+      tagsRef,
       scrollPaneRef,
       visitedViews,
       routes,
