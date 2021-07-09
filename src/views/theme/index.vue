@@ -65,7 +65,8 @@ import '@/assets/custom-theme/index.css'
 import { reactive, watch, toRefs } from 'vue'
 // the theme changed version element-ui css
 
-// TODO: 展示有问题，需要记录并修改
+// TODO: 展示有问题，需要记录并修改，
+// TODO: UI未更新上
 export default {
   name: 'Theme',
   setup() {

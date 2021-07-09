@@ -23,7 +23,6 @@ export default {
       if (state.hasOwnProperty(key)) {
         // eslint-disable-next-line no-param-reassign
         state[key] = value
-        console.log(state[key], value)
       }
     }
   },
