@@ -71,7 +71,7 @@ import { ElMessage } from 'element-plus'
 // TODO add v-model 父子组件双向绑定处理
 
 export default {
-  name: 'ExportExcel',
+  name: 'SelectExcel',
   setup() {
     const multipleTable = ref(null)
     const state = reactive({
@@ -146,12 +146,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.radio-label {
-  font-size: 14px;
-  color: #606266;
-  line-height: 40px;
-  padding: 0 12px 0 30px;
-}
-</style>

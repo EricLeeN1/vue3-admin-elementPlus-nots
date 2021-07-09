@@ -8,7 +8,7 @@ export function getUserInfos(params) {
   })
 }
 
-export function transactionList(params = { page: 1, per_page: 5 }) {
+export function transactionList(params = { page: 1, per_page: 10 }) {
   return request({
     url: '/api/users/EricLeeN1/repos',
     method: 'get',

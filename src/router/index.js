@@ -237,13 +237,13 @@ export const asyncRoutes = [
         component: () => import('@/views/excel/select-excel.vue'),
         name: 'SelectExcel',
         meta: { title: 'Export Selected' }
+      },
+      {
+        path: 'export-merge-header',
+        component: () => import('@/views/excel/merge-header.vue'),
+        name: 'MergeHeader',
+        meta: { title: 'Merge Header' }
       }
-      // {
-      //   path: 'export-merge-header',
-      //   component: () => import('@/views/excel/merge-header'),
-      //   name: 'MergeHeader',
-      //   meta: { title: 'Merge Header' }
-      // },
       // {
       //   path: 'upload-excel',
       //   component: () => import('@/views/excel/upload-excel'),
