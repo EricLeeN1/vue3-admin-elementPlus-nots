@@ -16,6 +16,14 @@ export function transactionList(params = { page: 1, per_page: 10 }) {
   })
 }
 
+export function transactionDetails(params) {
+  return request({
+    url: '/api/repos/EricLeeN1/',
+    method: 'get',
+    params
+  })
+}
+
 // export function logout(params = { page: 1, per_page: 5 }) {
 //   return request({
 //     url: '/users/EricLeeN1/repos',
