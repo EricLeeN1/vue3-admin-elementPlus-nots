@@ -107,11 +107,13 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs } from 'vue'
+import { reactive, ref, toRefs, computed } from 'vue'
 import { useStore } from 'vuex'
 import { validURL } from '@/utils/validate'
 import { transactionDetails } from '@/apis/github'
 import { ElMessage, ElNotification } from 'element-plus'
+import Tinymce from '@/components/Tinymce/index.vue'
+import Upload from '@/components/Upload/SingleImage3.vue'
 import Warning from './Warning.vue'
 
 const validateRequire = (rule, value, callback) => {
@@ -156,9 +158,9 @@ const defaultForm = {
 export default {
   name: 'ArticleDetail',
   components: {
-    // Tinymce,
+    Tinymce,
     // MDinput,
-    // Upload,
+    Upload,
     // Sticky,
     Warning
     // CommentDropdown,
@@ -185,6 +187,19 @@ export default {
         source_uri: [{ validator: validateSourceUri, trigger: 'blur' }]
       },
       tempRoute: {}
+    })
+    const contentShortLength = computed(() => state.postForm.content_short.length)
+    const displayTime = computed({
+      // set and get is useful when the data
+      // returned by the back end api is different from the front end
+      // back end return => "2013-06-25 06:59:25"
+      // front end need timestamp => 1372114765000
+      get() {
+        return +new Date(state.postForm.display_time)
+      },
+      set(val) {
+        state.postForm.display_time = new Date(val)
+      }
     })
     const setTagsViewTitle = () => {
       const title = 'Edit Article'
@@ -257,6 +272,8 @@ export default {
     }
     return {
       ...toRefs(state),
+      contentShortLength,
+      displayTime,
       postFormRef,
       fetchData,
       setTagsViewTitle,
