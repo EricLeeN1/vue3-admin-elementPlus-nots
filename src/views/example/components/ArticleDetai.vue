@@ -114,6 +114,7 @@ import { transactionDetails } from '@/apis/github'
 import { ElMessage, ElNotification } from 'element-plus'
 import Tinymce from '@/components/Tinymce/index.vue'
 import Upload from '@/components/Upload/SingleImage3.vue'
+import MDinput from '@/components/MDinput/index.vue'
 import Warning from './Warning.vue'
 
 const validateRequire = (rule, value, callback) => {
@@ -159,7 +160,7 @@ export default {
   name: 'ArticleDetail',
   components: {
     Tinymce,
-    // MDinput,
+    MDinput,
     Upload,
     // Sticky,
     Warning
