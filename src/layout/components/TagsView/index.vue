@@ -37,13 +37,24 @@
 import path from 'path'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
-import { ref, reactive, toRefs, watch, onMounted, computed, nextTick, onBeforeUpdate } from 'vue'
+import {
+  ref,
+  reactive,
+  toRefs,
+  watch,
+  onMounted,
+  computed,
+  nextTick,
+  onBeforeUpdate,
+  getCurrentInstance
+} from 'vue'
 import ScrollPane from './ScrollPane.vue'
 
 export default {
   name: 'TagsView',
   components: { ScrollPane },
   setup() {
+    const { ctx } = getCurrentInstance()
     const tagsRef = ref([])
     const scrollPaneRef = ref(null)
     const state = reactive({
@@ -142,6 +153,7 @@ export default {
     const toLastView = (visitedViews, view) => {
       const latestView = visitedViews.slice(-1)[0]
       if (latestView) {
+        console.log(latestView.fullPath)
         router.push(latestView.fullPath)
       } else if (view.name === 'Dashboard') {
         // now the default is to redirect to the home page if there is no tags-view,
@@ -157,7 +169,7 @@ export default {
       // eslint-disable-next-line no-shadow
       store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
         if (isActive(view)) {
-          toLastView(visitedViews.value, view)
+          toLastView(visitedViews, view)
         }
       })
     }
@@ -181,8 +193,8 @@ export default {
 
     const openMenu = (tag, e) => {
       const menuMinWidth = 105
-      const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
-      const { offsetWidth } = this.$el // container width
+      const offsetLeft = ctx.$el.getBoundingClientRect().left // container margin left
+      const { offsetWidth } = ctx.$el // container width
       const maxLeft = offsetWidth - menuMinWidth // left boundary
       const left = e.clientX - offsetLeft + 15 // 15: margin right
 
@@ -217,9 +229,9 @@ export default {
       () => state.visible,
       (val) => {
         if (val) {
-          document.body.addEventListener('click', this.closeMenu)
+          document.body.addEventListener('click', closeMenu)
         } else {
-          document.body.removeEventListener('click', this.closeMenu)
+          document.body.removeEventListener('click', closeMenu)
         }
       }
     )
