@@ -12,7 +12,7 @@ import { computed } from 'vue'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: 'xlsx'
     }
@@ -20,10 +20,10 @@ export default {
   setup(props, { emit }) {
     const bookType = computed({
       get() {
-        return props.value
+        return props.modelValue
       },
       set(val) {
-        emit('update:value', val)
+        emit('update:modelValue', val)
       }
     })
     return {

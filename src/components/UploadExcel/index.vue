@@ -133,6 +133,7 @@ export default {
     }
     return {
       ...toRefs(state),
+      excelUploadInput,
       generateData,
       isExcel,
       getHeaderRow,

@@ -13,7 +13,7 @@ import { computed } from 'vue'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: true
     }
@@ -21,10 +21,10 @@ export default {
   setup(props, { emit }) {
     const autoWidth = computed({
       get() {
-        return props.value
+        return props.modelValue
       },
       set(val) {
-        emit('update:value', val)
+        emit('update:modelValue', val)
       }
     })
     return {

@@ -15,7 +15,7 @@ import { computed } from 'vue'
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: ''
     }
@@ -23,11 +23,10 @@ export default {
   setup(props, { emit }) {
     const filename = computed({
       get() {
-        return props.value
+        return props.modelValue
       },
       set(val) {
-        console.log(val)
-        emit('update:value', val)
+        emit('update:modelValue', val)
       }
     })
     return {

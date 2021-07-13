@@ -117,6 +117,7 @@ import Upload from '@/components/Upload/SingleImage3.vue'
 import MDinput from '@/components/MDinput/index.vue'
 import Sticky from '@/components/Sticky/index.vue' // 粘性header组件
 import Warning from './Warning.vue'
+import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown/index'
 
 const validateRequire = (rule, value, callback) => {
   if (value === '') {
@@ -151,7 +152,7 @@ const defaultForm = {
   content_short: '', // 文章摘要
   source_uri: '', // 文章外链
   image_uri: '', // 文章图片
-  display_time: undefined, // 前台展示时间
+  display_time: '', // 前台展示时间
   id: undefined,
   platforms: ['a-platform'],
   comment_disabled: false,
@@ -164,10 +165,10 @@ export default {
     MDinput,
     Upload,
     Sticky,
-    Warning
-    // CommentDropdown,
-    // PlatformDropdown,
-    // SourceUrlDropdown
+    Warning,
+    CommentDropdown,
+    PlatformDropdown,
+    SourceUrlDropdown
   },
   props: {
     isEdit: {
@@ -197,7 +198,7 @@ export default {
       // back end return => "2013-06-25 06:59:25"
       // front end need timestamp => 1372114765000
       get() {
-        return +new Date(state.postForm.display_time)
+        return state.postForm.display_time ? +new Date(state.postForm.display_time) : new Date()
       },
       set(val) {
         state.postForm.display_time = new Date(val)

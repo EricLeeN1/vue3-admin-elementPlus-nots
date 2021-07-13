@@ -54,8 +54,6 @@ import { reactive, ref, toRefs, onBeforeMount } from 'vue'
 import { transactionList } from '@/apis/github'
 import { parseTime } from '@/utils'
 
-// TODO add v-model 父子组件双向绑定处理
-
 export default {
   name: 'MergeHeader',
   setup() {

@@ -12,8 +12,6 @@ import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 import { reactive, toRefs } from 'vue'
 import { ElMessage } from 'element-plus'
 
-// TODO add v-model 父子组件双向绑定处理
-
 export default {
   name: 'UploadExcel',
   components: { UploadExcelComponent },

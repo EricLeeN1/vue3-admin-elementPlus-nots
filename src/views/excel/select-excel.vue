@@ -68,8 +68,6 @@ import { transactionList } from '@/apis/github'
 import { parseTime } from '@/utils'
 import { ElMessage } from 'element-plus'
 
-// TODO add v-model 父子组件双向绑定处理
-
 export default {
   name: 'SelectExcel',
   setup() {
