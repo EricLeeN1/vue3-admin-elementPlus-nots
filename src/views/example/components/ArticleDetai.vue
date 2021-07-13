@@ -115,6 +115,7 @@ import { ElMessage, ElNotification } from 'element-plus'
 import Tinymce from '@/components/Tinymce/index.vue'
 import Upload from '@/components/Upload/SingleImage3.vue'
 import MDinput from '@/components/MDinput/index.vue'
+import Sticky from '@/components/Sticky/index.vue' // 粘性header组件
 import Warning from './Warning.vue'
 
 const validateRequire = (rule, value, callback) => {
@@ -162,7 +163,7 @@ export default {
     Tinymce,
     MDinput,
     Upload,
-    // Sticky,
+    Sticky,
     Warning
     // CommentDropdown,
     // PlatformDropdown,
