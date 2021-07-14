@@ -38,20 +38,20 @@ import { getToken } from '@/apis/qiniu'
 export default {
   name: 'SingleImageUpload3',
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: ''
     }
   },
-  emits: ['input'],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const state = reactive({
       tempUrl: '',
       dataObj: { token: '', key: '' }
     })
-    const imageUrl = computed(() => props.value)
+    const imageUrl = computed(() => props.modelValue)
     const emitInput = (val) => {
-      emit('input', val)
+      emit('update:modelValue', val)
     }
     const rmImage = () => {
       emitInput('')
